@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie - Movie Web App</title>
+    <link rel="stylesheet" href="../../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/styles.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Movie Web App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="/users">View Users</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center">Add a New Movie</h1>
+                <form action="{{ url_for('add_movie', user_id=user.id) }}" method="POST" class="shadow p-4 rounded bg-light">
+                    <!-- Movie Name -->
+                    <div class="mb-3">
+                        <label for="movie_name" class="form-label">Movie Title</label>
+                        <input type="text" class="form-control" id="movie_name" name="movie_name" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Fetch and Add Movie</button>
+                    </div>
+                </form>
+
+                <!-- Go Back Link -->
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('user_movies', user_id=user.id) }}" class="btn btn-link">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<footer class="bg-dark text-white py-3 mt-5 text-center">
+        <p>&copy; 2024 Movie Web App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
