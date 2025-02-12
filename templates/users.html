@@ -3,34 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="static/bootstrap.min.css">
-    <title>Users List</title>
+    <title>Users List - Movie Web App</title>
 </head>
-<body class="d-flex flex-column min-vh-100">
-<header class="bg-primary text-white py-3 mb-4">
-        <h1 class="text-center">Users List</h1>
-    <nav class="nav justify-content-center">
-            <a class="nav-link text-light" href="{{ url_for('add_user') }}">Add User</a>
-    <a class="nav-link text-light" href="/">Home</a>
-    </nav>
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <!-- Header with Navigation -->
+    <header class="bg-primary text-white py-4 shadow">
+        <div class="container text-center">
+            <h1 class="fw-bold">Users List</h1>
+            <nav class="nav justify-content-center mt-2">
+                <a class="nav-link text-white fw-semibold" href="{{ url_for('add_user') }}">➕ Add User</a>
+                <a class="nav-link text-white fw-semibold" href="/">🏠 Home</a>
+            </nav>
+        </div>
     </header>
- <main class="container">
-    <ul class="list-group mb-4">
-        {% for user in users %}
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        <a href="{{ url_for('user_movies', user_id=user.id) }}">{{ user.username }}</a>
-         <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-         </form>
-    </li>
-{% endfor %}
-    </ul>
 
- </main>
-<footer class="bg-dark text-white py-3 mt-5 text-center">
-        <p>&copy; 2024 Movie Web App. All rights reserved.</p>
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h2 class="text-center text-primary fw-bold">User List</h2>
+                        <ul class="list-group">
+                            {% for user in users %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a href="{{ url_for('user_movies', user_id=user.id) }}" class="fw-semibold text-decoration-none text-dark">
+                                    {{ user.username }}
+                                </a>
+                                <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
+                                </form>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-auto text-center">
+        <p class="mb-0">&copy; 2024 Movie Web App. All rights reserved.</p>
     </footer>
 
+    <script src="static/bootstrap.bundle.min.js"></script>
 </body>
 </html>

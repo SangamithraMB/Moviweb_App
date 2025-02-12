@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>500 Internal Server Error</title>
-     <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="static/bootstrap.min.css">
 </head>
-<body class="bg-light">
-    <div class="container text-center" style="margin-top: 100px;">
-    <h1 class="display-4 text-danger">500 Internal Server Error</h1>
-    <p class="lead">Oops! Something went wrong on our end. Please try again later.</p>
-    <a class="btn btn-primary" href="{{ url_for('list_users') }}">Back to Users</a>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <div class="container text-center mt-5">
+        <div class="card shadow-lg p-5">
+            <h1 class="display-4 text-danger">⚠️ 500 Internal Server Error</h1>
+            <p class="lead text-muted">Oops! Something went wrong on our end.</p>
+            <p class="text-muted">We’re working on fixing this issue. Please try again later.</p>
+
+            <!-- Navigation Buttons -->
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <a class="btn btn-primary" href="/">🏠 Back to Home</a>
+                <a class="btn btn-secondary" href="{{ url_for('list_users') }}">👥 View Users</a>
+            </div>
+        </div>
     </div>
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2024 Movie Web App. All rights reserved.</p>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">&copy; 2024 Movie Web App. All rights reserved.</p>
     </footer>
+
 </body>
 </html>

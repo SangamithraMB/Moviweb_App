@@ -3,32 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <title>Add User - Movie Web App</title>
 </head>
-<body class="d-flex flex-column min-vh-100">
-    <header class="bg-primary text-white py-3 mb-4">
-        <h1 class="text-center">Add a New User</h1>
-        <nav class="nav justify-content-center">
-            <a class="nav-link text-light" href="/">Home</a>
-            <a class="nav-link text-light" href="/users">View Users</a>
-        </nav>
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <!-- Header with Navigation -->
+    <header class="bg-primary text-white py-4 shadow">
+        <div class="container text-center">
+            <h1 class="fw-bold">Add a New User</h1>
+            <nav class="nav justify-content-center mt-2">
+                <a class="nav-link text-white fw-semibold" href="/">🏠 Home</a>
+                <a class="nav-link text-white fw-semibold" href="/users">👥 View Users</a>
+            </nav>
+        </div>
     </header>
-    <main class="container mt-4">
-        <form action="{{ url_for('add_user') }}" method="POST">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-            <input type="text" id="username" name="username" class="form-control" required>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h2 class="text-center text-primary fw-bold">User Details</h2>
+                        <form action="{{ url_for('add_user') }}" method="POST">
+                            <div class="mb-3">
+                                <label for="username" class="form-label fw-semibold">Username</label>
+                                <input type="text" id="username" name="username" class="form-control" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success fw-bold">➕ Add User</button>
+                            </div>
+                        </form>
+
+                        <!-- Go Home Button -->
+                        <div class="text-center mt-3">
+                            <a class="btn btn-outline-secondary" href="/">⬅️ Go Home</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Add User</button>
-        </form>
-        <div class="text-center mt-3">
-            <a class="btn btn-link" href="/">Go Home</a>
         </div>
     </main>
-    <footer class="bg-dark text-white py-3 mt-5 text-center">
-        <p>&copy; 2024 Movie Web App. All rights reserved.</p>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-auto text-center">
+        <p class="mb-0">&copy; 2024 Movie Web App. All rights reserved.</p>
     </footer>
+
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

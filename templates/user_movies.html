@@ -4,47 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/styles.css">
     <title>{{ user.username }}'s Movies - Movie Web App</title>
-
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <header class="bg-info-subtle text-white text-center py-4">
-       <div class="container text-center">
-           <h1>{{ user.username }}'s Movies</h1>
-        <nav class="nav d-flex justify-content-evenly bg-light p-3">
-            <a class="link-underline-primary" href="/">Home</a>
-            <a class="link-underline-primary" href="/users">View Users</a>
-            <a class="link-underline-primary" href="/users/{{ user.id }}/add_movie">Add Movie</a> <!-- Link to add a new movie -->
-        </nav>
-       </div>
+
+    <!-- Header -->
+    <header class="bg-primary text-white text-center py-4">
+        <div class="container">
+            <h1>{{ user.username }}'s Movies 🎬</h1>
+            <nav class="nav justify-content-center bg-light p-2 rounded">
+                <a class="btn btn-link" href="/">🏠 Home</a>
+                <a class="btn btn-link" href="/users">👥 View Users</a>
+                <a class="btn btn-success text-white" href="/users/{{ user.id }}/add_movie">➕ Add Movie</a>
+            </nav>
+        </div>
     </header>
-    <main class="container">
+
+    <!-- Main Content -->
+    <main class="container mt-4">
         {% if movies %}
-            <h2 class="mb-4">Movies List:</h2>
+            <h2 class="mb-4 text-center">🎥 Movie List</h2>
             <ul class="list-group">
                 {% for movie in movies %}
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                       <h3 class="mb-1"> <strong>{{ movie.name }}</strong> ({{ movie.year }})</h3>
-                            <p class="mb-1"> Directed by: {{ movie.director }} </p>
-                            <p class="mb-1"> Rating: {{ movie.rating }} </p>
-                            </div>
-                        <div class="btn-group" role="group">
-                        <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}" method="POST" style="display:inline;">
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                        </form>
-                        <a class="btn btn-danger btn-sm link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover text-center"  href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}">Edit</a>
-                    </div>
+                            <h5 class="fw-bold">{{ movie.name }} ({{ movie.year }})</h5>
+                            <p class="mb-1"><strong>Director:</strong> {{ movie.director }}</p>
+                            <p class="mb-1"><strong>Rating:</strong> ⭐ {{ movie.rating }}</p>
+                        </div>
+                        <div class="btn-group gap-2" role="group">
+                            <a class="btn btn-warning btn-sm" href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}">✏️ Edit</a>
+                            <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}" method="POST">
+                                <button class="btn btn-danger btn-sm" type="submit">🗑️ Delete</button>
+                            </form>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p class="text-center">No movies found for this user.</p>
+            <p class="text-center text-muted">No movies found for this user.</p>
         {% endif %}
     </main>
+
+    <!-- Footer -->
     <footer class="bg-dark text-white py-3 mt-5 text-center">
-        <p>&copy; 2024 Movie Web App. All rights reserved.</p>
+        <p class="mb-0">&copy; 2024 Movie Web App. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
